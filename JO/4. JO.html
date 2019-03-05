@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Basic Embed</title>
+    <!-- a utiliser dans Tableau Online -->
+	<script src="https://online.tableau.com/javascripts/api/tableau-2.min.js"></script>
+    <!-- a utiliser dans Tableau Public -->
+	<!-- <script type="text/javascript" src="https://public.tableau.com/javascripts/api/tableau-2.min.js"></script> -->
+    <script type="text/javascript">
+        var viz,workbook, activeSheet;
+		
+		function initViz() {
+			// Sur Tableau Public
+			// myurl="https://public.tableau.com/shared/87NFGWSKK";
+			// Sur Tableau Online
+			myurl="https://eu-west-1a.online.tableau.com/t/benoitcayla/views/2019_1_JO_v2_6/Rsultats?iframeSizedToWindow=true&:embed=y&:showAppBanner=false&:display_count=no&:showVizHome=no";
+            var containerDiv = document.getElementById("vizContainer"),
+                url = myurl,
+                options = {
+                    hideTabs: true,
+					hideToolbar: true,
+                    onFirstInteractive: function () {
+                        workbook = viz.getWorkbook() ;
+						activeSheet = workbook.getActiveSheet() ;
+						listenToMarksSelection();
+                    }
+                };
+            viz = new tableau.Viz(containerDiv, url, options);
+        }
+		
+		function FilterSingleValue() {
+			activeSheet.getWorksheets().get("Par JO").applyFilterAsync(
+				"Ville JO", 
+				"London",
+				tableau.FilterUpdateType.REPLACE);
+		}
+		
+		function clearFilter() {
+			activeSheet.getWorksheets().get("Par JO").clearFilterAsync("Ville JO");
+		}
+		function exportPDF() {
+			viz.showExportPDFDialog();
+		}      
+		function exportImage() {
+		  viz.showExportImageDialog();
+		}      
+		function exportData() {
+		  viz.showExportDataDialog();
+		}      
+		
+        function listenToMarksSelection() {
+            viz.addEventListener(tableau.TableauEventName.MARKS_SELECTION, onMarksSelection);
+        }
+
+        function onMarksSelection(marksEvent) {
+            return marksEvent.getMarksAsync().then(reportSelectedMarks);
+        }
+
+        function reportSelectedMarks(marks) {
+            var html = "";
+
+            for (var markIndex = 0; markIndex < marks.length; markIndex++) {
+                var pairs = marks[markIndex].getPairs();
+                html += "<b>Mark " + markIndex + ":</b><ul>";
+
+                for (var pairIndex = 0; pairIndex < pairs.length; pairIndex++) {
+                    var pair = pairs[pairIndex];
+                    html += "<li><b>Field Name:</b> " + pair.fieldName;
+                    html += "<br/><b>Value:</b> " + pair.formattedValue + "</li>";
+                }
+
+                html += "</ul>";
+            }
+
+            var infoDiv = document.getElementById('markDetails');
+            infoDiv.innerHTML = html;
+        }
+		
+    </script>
+</head>
+
+<body onload="initViz();">
+	<button onClick="FilterSingleValue();">London Only</button>
+	<button onClick="clearFilter();">Clear filter</button>
+	<button onClick="exportPDF();">Export PDF</button>
+	<button onClick="exportImage();">Export Image</button>
+	<button onClick="exportData();">View data</button>
+    <div id="vizContainer" style="width:800px; height:860px;"></div>
+	<div id="markDetails">Information about selected marks displays here.</div>
+</body>
+
+</html>
