@@ -1,0 +1,8 @@
+0,non renseigné ou sans objet
+1,Se déplaçant dans le sens véhicule heurtant
+2,Se déplaçant dans le sens inverse du véhicule
+3,Traversant
+4,Masqué
+5,Jouant et/ou courant
+6,Avec animal
+9,Autre

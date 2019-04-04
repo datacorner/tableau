@@ -1,0 +1,8 @@
+1,"Sur chaussée, A + 50 m du passage piéton"
+2,"Sur chaussée, A,50 m du passage piéton"
+3,"Sur passage piéton, Sans signalisation lumineuse"
+4,"Sur passage piéton, Avec signalisation lumineuse"
+5,Sur trottoir
+6,Sur accotement
+7,Sur refuge ou BAU
+8,Sur contre allée

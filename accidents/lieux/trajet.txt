@@ -1,0 +1,6 @@
+1,Domicile et travail
+2,Domicile et école
+3,Courses et achats
+4,Utilisation professionnelle
+5,Promenade et loisirs
+9,Autre
