@@ -1,0 +1,2 @@
+1,Hors agglomération
+2,En agglomération
