@@ -1,0 +1,39 @@
+﻿Prep:
+	* UNION 2015, 2016, 2017
+	* 2016: Scinder Ville-Dept
+	* Luminosité (stan)
+	* JOIN Véhicule
+
+Viz N°1 : CARTE --> Couts des accidents
+	* select pays + Cout global (color)
+	* changer gradient couleur
+	* drilldow --> dept.
+	* Ajout filtre année / combo
+	* montrer changement 2016-2017
+	
+Viz N°2 : PLOT --> Couts par catégorie de route
+	* BAR / col = Cout humain / ligne = cout matériel
+	* SCATTER
+	* ID accident (Répère)
+	* essayer de clusteriser par couleur avec d'autre dims
+	* Ajouter cluster (x 7)
+	* mémoriser cluster
+	
+Viz N°3 : BAR --> Implication Mat/humaine par surface
+	* col = Nb d'usagers impliqués + Nb véhicules impliqués, ligne = type de surface
+	* ajouter cout global couleur
+	* Double axe
+	* sync axes
+	
+Viz N°4 : Evolution cout mensuel
+	* col Mois(Date), ligne = COut global
+	* drag date (année) couleur
+	* forecast
+		- options : changer 0 pour ignorer les derniers
+		- exactement 1 an
+	* changer mois en bleu/discret
+	* glisser date dans couleurs
+	* ajouter la tendance
+	
+Ask data:
+	tues par region
